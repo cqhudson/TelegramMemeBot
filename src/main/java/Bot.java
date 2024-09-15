@@ -30,6 +30,16 @@ public class Bot extends TelegramLongPollingBot {
 
         System.out.println(username + ": " + message.getText());
 
+
+        if (message.isCommand()) {
+            if (message.getText().equals("/meme")) {
+                Meme meme = new Meme();
+                sendText(id, meme.getMemeJson());
+            }
+        }
+
+
+
     }
 
     public void sendText(Long id, String text) {
