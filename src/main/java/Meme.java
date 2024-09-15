@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.io.UncheckedIOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,10 +9,11 @@ import java.net.http.HttpResponse;
 public class Meme {
 
     private final String MEME_API_URI = "https://meme-api.com/gimme";
+    MemeJson memeJson = new MemeJson();
 
-    public String getMemeJson() {
+    public void getJson() {
 
-        System.out.println("Fetching a meme from " + MEME_API_URI);
+        System.out.println("Fetching meme JSON data from " + MEME_API_URI);
 
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
@@ -19,7 +22,8 @@ public class Meme {
                     .build();
             try {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                return response.body();
+                memeJson = new Gson().fromJson(response.body(), MemeJson.class);
+                System.out.println("Successfully fetched meme JSON date.");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
