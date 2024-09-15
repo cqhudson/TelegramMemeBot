@@ -1,6 +1,8 @@
 import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -49,6 +51,22 @@ public class Bot extends TelegramLongPollingBot {
                 .build();
         try {
             execute(sm);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void sendMemeImageOnly (Long id, Meme meme) {
+        InputFile memeFile = new InputFile();
+        memeFile.setMedia(meme.getImageUri());
+        SendPhoto sp = SendPhoto.builder()
+                .chatId(id.toString())
+                .photo(memeFile)
+                .protectContent(meme.isNsfw()) // if meme is marked NSFW, blur it
+                .caption("Source: " + meme.getPostLink())
+                .build();
+        try {
+            execute(sp);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
