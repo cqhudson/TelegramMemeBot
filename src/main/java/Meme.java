@@ -33,4 +33,10 @@ public class Meme {
         }
     }
 
+    public String getPostLink() { return memeJson.getPostLink(); }
+
+    public String getImageUri () { return memeJson.getUrl(); }
+
+    public Boolean isNsfw () { return memeJson.getNsfw(); }
+
 }
