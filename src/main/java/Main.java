@@ -10,7 +10,7 @@ public class Main {
 
         Dotenv dotenv = Dotenv.load();
 
-        Long myTelegramAccountId = Long.parseLong(dotenv.get("TELEGRAM_MY_ID"));
+        final Long myTelegramAccountId = Long.parseLong(dotenv.get("TELEGRAM_MY_ID"));
 
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         Bot bot = new Bot();
