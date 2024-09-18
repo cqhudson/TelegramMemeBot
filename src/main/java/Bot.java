@@ -35,7 +35,8 @@ public class Bot extends TelegramLongPollingBot {
 
         if (message.isCommand()) {
             if (message.getText().equals("/meme")) {
-                // Initialize meme and get JSON
+
+                // Initialize meme and GET the JSON
                 Meme meme = new Meme();
                 meme.getJson();
 
