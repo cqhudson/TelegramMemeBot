@@ -42,7 +42,14 @@ public class Bot extends TelegramLongPollingBot {
                 meme.getJson();
 
                 System.out.println(meme.getImageUri());
-                sendMemeImageOnly(id, meme);
+
+                if (meme.getImageUri().contains(".gif")){
+                    sendMemeAnimation(id, meme);
+                }
+                else if (meme.getImageUri().contains(".png") || meme.getImageUri().contains(".jpg")){
+                    sendMemePhoto(id, meme);
+                }
+
             }
         }
 
