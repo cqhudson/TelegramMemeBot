@@ -49,7 +49,10 @@ public class Bot extends TelegramLongPollingBot {
 
     }
 
+    // This method sends text as a Telegram Message, no images or files.
     public void sendText(Long id, String text) {
+
+        // Create a SendMessage object to build the message to send
         SendMessage sm = SendMessage.builder()
                 .chatId(id.toString())
                 .text(text)
