@@ -1,4 +1,4 @@
-# Connor's Telegram Meme Bot
+# Telegram Meme Bot
 
 This is a simple Telegram bot that finds memes based on an API, and then sends the memes to the user that requested them as a Telegram message.
 
