@@ -1,5 +1,6 @@
 import io.github.cdimascio.dotenv.Dotenv;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendAnimation;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -82,6 +83,29 @@ public class Bot extends TelegramLongPollingBot {
         // Attempt to send the message
         try {
             execute(sp);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // This method sends a meme in using the Telegram SendAnimation class to build a message with an Animation
+    public void sendMemeAnimation(Long id, Meme meme) {
+
+        // Store the animation as an InputFile to pass into the SendAnimation builder
+        InputFile animation = new InputFile();
+        animation.setMedia(meme.getImageUri());
+
+        // Build the SendAnimation object to build the message with an animation (animation) to send
+        SendAnimation sa = SendAnimation.builder()
+                .chatId(id.toString())
+                .animation(animation)
+                .protectContent(meme.isNsfw()) // If the meme is marked NSFW, blur it
+                .caption("Source: " + meme.getPostLink())
+                .build();
+
+        // Attempt to send the message
+        try {
+            execute(sa);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
