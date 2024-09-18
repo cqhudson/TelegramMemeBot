@@ -26,13 +26,14 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
+        // The Message object we pull from update contains data about the message sent to us
         Message message = update.getMessage();
         User user = message.getFrom();
         String username = user.getUserName();
         Long id = user.getId();
 
+        // Log each message sent to us to the console for now (debugging purposes)
         System.out.println(username + ": " + message.getText());
-
 
         if (message.isCommand()) {
             if (message.getText().equals("/meme")) {
@@ -41,6 +42,7 @@ public class Bot extends TelegramLongPollingBot {
                 Meme meme = new Meme();
                 meme.getJson();
 
+                // Log the meme url to the console for now (debugging purposes)
                 System.out.println(meme.getImageUri());
 
                 if (meme.getImageUri().contains(".gif")){
@@ -49,12 +51,8 @@ public class Bot extends TelegramLongPollingBot {
                 else if (meme.getImageUri().contains(".png") || meme.getImageUri().contains(".jpg")){
                     sendMemePhoto(id, meme);
                 }
-
             }
         }
-
-
-
     }
 
     // This method sends text as a Telegram Message, no images or files.
