@@ -64,15 +64,22 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendMemeImageOnly (Long id, Meme meme) {
-        InputFile memeFile = new InputFile();
-        memeFile.setMedia(meme.getImageUri());
+    // This method sends a meme using the Telegram SendPhoto class to build a message with a Photo
+    public void sendMemePhoto(Long id, Meme meme) {
+
+        // Store the image as an InputFile to pass into the SendPhoto builder
+        InputFile image = new InputFile();
+        image.setMedia(meme.getImageUri());
+
+        // Create a SendPhoto object to build the message with a photo to send
         SendPhoto sp = SendPhoto.builder()
                 .chatId(id.toString())
-                .photo(memeFile)
+                .photo(image)
                 .protectContent(meme.isNsfw()) // if meme is marked NSFW, blur it
                 .caption("Source: " + meme.getPostLink())
                 .build();
+
+        // Attempt to send the message
         try {
             execute(sp);
         } catch (TelegramApiException e) {
