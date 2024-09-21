@@ -9,6 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.sql.*;
+
 public class Bot extends TelegramLongPollingBot {
 
     // Use this to grab our API tokens and other special variables from ".env" file
