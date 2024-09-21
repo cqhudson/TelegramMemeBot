@@ -34,6 +34,10 @@ public class Bot extends TelegramLongPollingBot {
         String username = user.getUserName();
         Long id = user.getId();
 
+        // TODO: put database stuff here
+            storeInDatabase(message);
+        //
+
         // Log each message sent to us to the console for now (debugging purposes)
         System.out.println(username + ": " + message.getText());
 
