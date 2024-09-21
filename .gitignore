@@ -39,3 +39,4 @@ build/
 
 src/main/resources/.env
 out/artifacts
+database/
