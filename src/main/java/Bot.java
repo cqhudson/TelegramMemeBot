@@ -51,6 +51,11 @@ public class Bot extends TelegramLongPollingBot {
                 meme.getRandomMemeJsonFromSubreddit("wholesomememes");
                 sendMeme(id, meme);
             }
+            else if (update.getCallbackQuery().getData().equals("r/nsfwmemes")) {
+                // GET meme JSON from r/memes
+                meme.getRandomMemeJsonFromSubreddit("nsfwmemes");
+                sendMeme(id, meme);
+            }
 
         }
 
@@ -90,6 +95,8 @@ public class Bot extends TelegramLongPollingBot {
             else if (message.getText().equals("/source")) {
 
                 // Create Inline Buttons to display to the user
+
+                // ROW 1
                 InlineKeyboardButton buttonMemes = InlineKeyboardButton.builder()
                         .text("r/Memes")
                         .callbackData("r/memes")
@@ -102,14 +109,20 @@ public class Bot extends TelegramLongPollingBot {
                         .text("r/WholesomeMemes")
                         .callbackData("r/wholesomememes")
                         .build();
+                // ROW 2
+                InlineKeyboardButton buttonNsfwMemes = InlineKeyboardButton.builder()
+                        .text("r/NsfwMemes")
+                        .callbackData("r/nsfwmemes")
+                        .build();
 
                 // Create a List of buttons
-                List<InlineKeyboardButton> buttons = List.of(buttonMemes, buttonDankMemes, buttonWholesomeMemes);
-
+                List<InlineKeyboardButton> row1Buttons = List.of(buttonMemes, buttonDankMemes, buttonWholesomeMemes);
+                List<InlineKeyboardButton> row2Buttons = List.of(buttonNsfwMemes);
 
                 // Create the Inline Keyboard
                 InlineKeyboardMarkup keyboard = InlineKeyboardMarkup.builder()
-                        .keyboardRow(buttons)
+                        .keyboardRow(row1Buttons)
+                        .keyboardRow(row2Buttons)
                         .build();
 
                 // Send the keyboard to the user
@@ -162,6 +175,7 @@ public class Bot extends TelegramLongPollingBot {
                 .chatId(id.toString())
                 .photo(image)
                 .caption("Source: " + meme.getPostLink())
+                .hasSpoiler(meme.isNsfw())
                 .build();
 
         // Attempt to send the message
@@ -184,6 +198,7 @@ public class Bot extends TelegramLongPollingBot {
                 .chatId(id.toString())
                 .animation(animation)
                 .caption("Source: " + meme.getPostLink())
+                .hasSpoiler(meme.isNsfw())
                 .build();
 
         // Attempt to send the message
