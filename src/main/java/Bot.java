@@ -43,7 +43,17 @@ public class Bot extends TelegramLongPollingBot {
 
             Meme meme = new Meme();
 
-            if (message.getText().equals("/meme")) {
+            if (message.getText().equals("/start")) {
+                System.out.println("Started a session with: " + username);
+                sendText(id,"""
+                        Welcome to Connor's Meme Bot. Here are some of the commands you can use:
+                        /start - show this message
+                        /meme - fetch a random meme from Reddit
+                        /source - fetch a random meme from a specific subreddit
+                        """);
+            }
+
+            else if (message.getText().equals("/meme")) {
 
                 // GET meme JSON
                 meme.getRandomMemeJson();
