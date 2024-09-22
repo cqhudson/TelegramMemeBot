@@ -7,7 +7,11 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
 
@@ -51,6 +55,42 @@ public class Bot extends TelegramLongPollingBot {
                 else if (meme.getImageUri().contains(".png") || meme.getImageUri().contains(".jpg")){
                     sendMemePhoto(id, meme);
                 }
+            }
+
+            else if (message.getText().equals("/source")) {
+
+                // Create Inline Buttons to display to the user
+                InlineKeyboardButton buttonMemes = InlineKeyboardButton.builder()
+                        .text("r/Memes")
+                        .callbackData("r/memes")
+                        .build();
+                InlineKeyboardButton buttonDankMemes = InlineKeyboardButton.builder()
+                        .text("r/DankMemes")
+                        .callbackData("r/dankmemes")
+                        .build();
+                InlineKeyboardButton buttonNsfwMemes = InlineKeyboardButton.builder()
+                        .text("r/NSFWMemes")
+                        .callbackData("r/nsfwmemes")
+                        .build();
+
+                // Create a List of buttons
+                List<InlineKeyboardButton> buttons = List.of(buttonMemes, buttonDankMemes, buttonNsfwMemes);
+
+
+                // Create the Inline Keyboard
+                InlineKeyboardMarkup keyboard = InlineKeyboardMarkup.builder()
+                        .keyboardRow(buttons)
+                        .build();
+
+                // Send the keyboard to the user
+                SendMessage sm = SendMessage.builder()
+                        .chatId(id.toString())
+                        .text("Select a subreddit to fetch a meme from")
+                        .parseMode("HTML")
+                        .replyMarkup(keyboard)
+                        .build();
+                try { execute(sm); } catch (TelegramApiException e) { throw new RuntimeException(e); }
+
             }
         }
     }
