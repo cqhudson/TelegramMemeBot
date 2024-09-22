@@ -30,21 +30,44 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
-        // The Message object we pull from update contains data about the message sent to us
-        Message message = update.getMessage();
-        User user = message.getFrom();
-        String username = user.getUserName();
-        Long id = user.getId();
+        // First we check for callback data, which means a user pressed an Inline button
+        if (update.hasCallbackQuery() && update.getCallbackQuery().getData() != null) {
+            Long id = update.getCallbackQuery().getFrom().getId();
 
-        // Log each message sent to us to the console for now (debugging purposes)
-        System.out.println(username + ": " + message.getText());
+            Meme meme = new Meme();
 
-        if (message.isCommand()) {
+            if (update.getCallbackQuery().getData().equals("r/memes")) {
+                // GET meme JSON from r/memes
+                meme.getRandomMemeJsonFromSubreddit("memes");
+                sendMeme(id, meme);
+            }
+            else if (update.getCallbackQuery().getData().equals("r/dankmemes")) {
+                // GET meme JSON from r/memes
+                meme.getRandomMemeJsonFromSubreddit("dankmemes");
+                sendMeme(id, meme);
+            }
+            else if (update.getCallbackQuery().getData().equals("r/nsfwmemes")) {
+                // GET meme JSON from r/memes
+                meme.getRandomMemeJsonFromSubreddit("nsfwmemes");
+                sendMeme(id, meme);
+            }
+
+        }
+
+        // If user did not press Inline button, check for a message
+        else if (update.getMessage().isCommand()) {
+
+            Message message = update.getMessage();
+            User user = message.getFrom();
+            String username = user.getUserName();
+            Long id = user.getId();
+
+            // Log each message sent to us to the console for now (debugging purposes)
+            System.out.println(username + ": " + message.getText());
 
             Meme meme = new Meme();
 
             if (message.getText().equals("/start")) {
-                System.out.println("Started a session with: " + username);
                 sendText(id,"""
                         Welcome to Connor's Meme Bot. Here are some of the commands you can use:
                         /start - show this message
@@ -61,12 +84,7 @@ public class Bot extends TelegramLongPollingBot {
                 // Log the meme url to the console for now (debugging purposes)
                 System.out.println(meme.getImageUri());
 
-                if (meme.getImageUri().contains(".gif")){
-                    sendMemeAnimation(id, meme);
-                }
-                else if (meme.getImageUri().contains(".png") || meme.getImageUri().contains(".jpg")){
-                    sendMemePhoto(id, meme);
-                }
+                sendMeme(id, meme);
             }
 
             else if (message.getText().equals("/source")) {
@@ -105,6 +123,8 @@ public class Bot extends TelegramLongPollingBot {
 
             }
         }
+
+
     }
 
     // This method sends text as a Telegram Message, no images or files.
