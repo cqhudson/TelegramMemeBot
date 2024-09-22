@@ -11,7 +11,7 @@ public class Meme {
     private final String MEME_API_URI = "https://meme-api.com/gimme";
     MemeJson memeJson = new MemeJson();
 
-    public void getJson() {
+    public void getRandomMemeJson() {
 
         System.out.println("Fetching meme JSON data from " + MEME_API_URI);
 
