@@ -162,6 +162,7 @@ public class Bot extends TelegramLongPollingBot {
                 .chatId(id.toString())
                 .photo(image)
                 .caption("Source: " + meme.getPostLink())
+                .hasSpoiler(meme.isNsfw())
                 .build();
 
         // Attempt to send the message
@@ -184,6 +185,7 @@ public class Bot extends TelegramLongPollingBot {
                 .chatId(id.toString())
                 .animation(animation)
                 .caption("Source: " + meme.getPostLink())
+                .hasSpoiler(meme.isNsfw())
                 .build();
 
         // Attempt to send the message
