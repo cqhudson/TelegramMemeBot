@@ -170,11 +170,18 @@ public class Bot extends TelegramLongPollingBot {
         InputFile image = new InputFile();
         image.setMedia(meme.getImageUri());
 
+        // Build caption based on NSFW status
+        String isNSFW = "Warning, this meme is considered Not Safe For Work (NSFW)\nSource: " + meme.getPostLink();
+        String isSFW = "Source: " + meme.getPostLink();
+
+        // If the meme is NSFW, set the caption accordingly.
+        String caption = meme.isNsfw() ? isNSFW : isSFW;
+
         // Create a SendPhoto object to build the message with a photo to send
         SendPhoto sp = SendPhoto.builder()
                 .chatId(id.toString())
                 .photo(image)
-                .caption("Source: " + meme.getPostLink())
+                .caption(caption)
                 .hasSpoiler(meme.isNsfw())
                 .build();
 
@@ -193,11 +200,18 @@ public class Bot extends TelegramLongPollingBot {
         InputFile animation = new InputFile();
         animation.setMedia(meme.getImageUri());
 
+        // Build caption based on NSFW status
+        String isNSFW = "Warning, this meme is considered Not Safe For Work (NSFW)\nSource: " + meme.getPostLink();
+        String isSFW = "Source: " + meme.getPostLink();
+
+        // If the meme is NSFW, set the caption accordingly.
+        String caption = meme.isNsfw() ? isNSFW : isSFW;
+
         // Build the SendAnimation object to build the message with an animation (animation) to send
         SendAnimation sa = SendAnimation.builder()
                 .chatId(id.toString())
                 .animation(animation)
-                .caption("Source: " + meme.getPostLink())
+                .caption(caption)
                 .hasSpoiler(meme.isNsfw())
                 .build();
 
