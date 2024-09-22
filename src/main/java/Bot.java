@@ -46,9 +46,9 @@ public class Bot extends TelegramLongPollingBot {
                 meme.getRandomMemeJsonFromSubreddit("dankmemes");
                 sendMeme(id, meme);
             }
-            else if (update.getCallbackQuery().getData().equals("r/nsfwmemes")) {
+            else if (update.getCallbackQuery().getData().equals("r/wholesomememes")) {
                 // GET meme JSON from r/memes
-                meme.getRandomMemeJsonFromSubreddit("nsfwmemes");
+                meme.getRandomMemeJsonFromSubreddit("wholesomememes");
                 sendMeme(id, meme);
             }
 
@@ -98,13 +98,13 @@ public class Bot extends TelegramLongPollingBot {
                         .text("r/DankMemes")
                         .callbackData("r/dankmemes")
                         .build();
-                InlineKeyboardButton buttonNsfwMemes = InlineKeyboardButton.builder()
-                        .text("r/NSFWMemes")
-                        .callbackData("r/nsfwmemes")
+                InlineKeyboardButton buttonWholesomeMemes = InlineKeyboardButton.builder()
+                        .text("r/WholesomeMemes")
+                        .callbackData("r/wholesomememes")
                         .build();
 
                 // Create a List of buttons
-                List<InlineKeyboardButton> buttons = List.of(buttonMemes, buttonDankMemes, buttonNsfwMemes);
+                List<InlineKeyboardButton> buttons = List.of(buttonMemes, buttonDankMemes, buttonWholesomeMemes);
 
 
                 // Create the Inline Keyboard
@@ -123,8 +123,6 @@ public class Bot extends TelegramLongPollingBot {
 
             }
         }
-
-
     }
 
     // This method sends text as a Telegram Message, no images or files.
