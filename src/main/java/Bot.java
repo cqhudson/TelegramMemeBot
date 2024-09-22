@@ -122,6 +122,16 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    // Handles whether we are sending a static image, or an animated gif.
+    public void sendMeme(Long id, Meme meme) {
+        if (meme.getImageUri().contains(".gif")){
+            sendMemeAnimation(id, meme);
+        }
+        else if (meme.getImageUri().contains(".png") || meme.getImageUri().contains(".jpg")){
+            sendMemePhoto(id, meme);
+        }
+    }
+
     // This method sends a meme using the Telegram SendPhoto class to build a message with a Photo
     public void sendMemePhoto(Long id, Meme meme) {
 
@@ -133,7 +143,6 @@ public class Bot extends TelegramLongPollingBot {
         SendPhoto sp = SendPhoto.builder()
                 .chatId(id.toString())
                 .photo(image)
-                .protectContent(meme.isNsfw()) // if meme is marked NSFW, blur it
                 .caption("Source: " + meme.getPostLink())
                 .build();
 
@@ -156,7 +165,6 @@ public class Bot extends TelegramLongPollingBot {
         SendAnimation sa = SendAnimation.builder()
                 .chatId(id.toString())
                 .animation(animation)
-                .protectContent(meme.isNsfw()) // If the meme is marked NSFW, blur it
                 .caption("Source: " + meme.getPostLink())
                 .build();
 
