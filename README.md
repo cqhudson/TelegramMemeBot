@@ -24,6 +24,6 @@ We parse the JSON data and return it to the users in a nicely formatted message.
 
 ![image](https://github.com/user-attachments/assets/54b792dd-dc83-4b6c-9c15-eae293849a18)
 
-We can even make decisions based on the JSON data, such as whether or not to blur an image if it is marked at Not safe for Work (NSFW).
+We can even make decisions based on the JSON data, such as whether or not to blur an image if it is marked at Not Safe for Work (NSFW).
 
 ![image](https://github.com/user-attachments/assets/f6cfc0ca-8da6-47e8-ac0f-a06965be83e7)
