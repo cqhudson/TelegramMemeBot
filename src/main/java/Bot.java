@@ -56,6 +56,16 @@ public class Bot extends TelegramLongPollingBot {
                 meme.getRandomMemeJsonFromSubreddit("nsfwmemes");
                 sendMeme(id, meme);
             }
+            else if (update.getCallbackQuery().getData().equals("r/4chan")) {
+                // GET meme JSON from r/greentext
+                meme.getRandomMemeJsonFromSubreddit("4chan");
+                sendMeme(id, meme);
+            }
+            else if (update.getCallbackQuery().getData().equals("r/greentext")) {
+                // GET meme JSON from r/greentext
+                meme.getRandomMemeJsonFromSubreddit("greentext");
+                sendMeme(id, meme);
+            }
 
         }
 
@@ -109,20 +119,33 @@ public class Bot extends TelegramLongPollingBot {
                         .text("r/WholesomeMemes")
                         .callbackData("r/wholesomememes")
                         .build();
+
                 // ROW 2
                 InlineKeyboardButton buttonNsfwMemes = InlineKeyboardButton.builder()
                         .text("r/NsfwMemes")
                         .callbackData("r/nsfwmemes")
                         .build();
+                InlineKeyboardButton button4chanMemes = InlineKeyboardButton.builder()
+                        .text("r/4chan")
+                        .callbackData("r/4chan")
+                        .build();
 
-                // Create a List of buttons
+                // ROW 3
+                InlineKeyboardButton buttonGreentextMemes = InlineKeyboardButton.builder()
+                        .text("r/greentext")
+                        .callbackData("r/greentext")
+                        .build();
+
+                // Create Lists of buttons to represent rows
                 List<InlineKeyboardButton> row1Buttons = List.of(buttonMemes, buttonDankMemes, buttonWholesomeMemes);
-                List<InlineKeyboardButton> row2Buttons = List.of(buttonNsfwMemes);
+                List<InlineKeyboardButton> row2Buttons = List.of(buttonNsfwMemes, button4chanMemes);
+                List<InlineKeyboardButton> row3Buttons = List.of(buttonGreentextMemes);
 
                 // Create the Inline Keyboard
                 InlineKeyboardMarkup keyboard = InlineKeyboardMarkup.builder()
                         .keyboardRow(row1Buttons)
                         .keyboardRow(row2Buttons)
+                        .keyboardRow(row3Buttons)
                         .build();
 
                 // Send the keyboard to the user
