@@ -21,7 +21,6 @@ public class Main {
                 myTelegramAccountId,
                 "The current session was started on " + getBotStartTime()
         );
-
     }
 
     public static String getBotStartTime() {
