@@ -88,6 +88,8 @@ public class Bot extends TelegramLongPollingBot {
                         /start - show this message
                         /meme - fetch a random meme from Reddit
                         /source - fetch a random meme from a specific subreddit
+                        
+                        Or enter any text to attempt to fetch memes from a subreddit of your choosing!
                         """);
             }
 
