@@ -22,8 +22,6 @@ public class Main {
                 "The current session was started on " + getBotStartTime()
         );
 
-
-
     }
 
     public static String getBotStartTime() {
