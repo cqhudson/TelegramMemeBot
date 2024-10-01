@@ -52,6 +52,7 @@ If you want to host your own Telegram bot based on this code, there are a few st
 
 1. Create a Telegram account
 2. Create a bot using the @BotFather bot in Telegram (this is how you get the bot username and bot API token to interact with your bot)
+
 ![image](https://github.com/user-attachments/assets/3cc087f4-b382-473b-a1d9-5d10a6cb0fd0)
 - Note: do not expose your API token to anybody. It allows anybody to control this bot from anywhere. This token in the picture will not work if you try to use it since I have revoked it. I'll be using it for this tutorial though.
 
