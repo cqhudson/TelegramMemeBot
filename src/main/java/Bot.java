@@ -57,7 +57,7 @@ public class Bot extends TelegramLongPollingBot {
                 sendMeme(id, meme);
             }
             else if (update.getCallbackQuery().getData().equals("r/4chan")) {
-                // GET meme JSON from r/greentext
+                // GET meme JSON from r/4chan
                 meme.getRandomMemeJsonFromSubreddit("4chan");
                 sendMeme(id, meme);
             }
@@ -69,7 +69,7 @@ public class Bot extends TelegramLongPollingBot {
 
         }
 
-        // If user did not press Inline button, check for a message
+        // If user did not press Inline button, check for a command
         else if (update.getMessage().isCommand()) {
 
             Message message = update.getMessage();
@@ -158,6 +158,18 @@ public class Bot extends TelegramLongPollingBot {
                 try { execute(sm); } catch (TelegramApiException e) { throw new RuntimeException(e); }
 
             }
+        }
+
+        // If the message is not a valid command, lets try to use it as a subreddit to pull memes from
+        else if (update.getMessage().hasText()) {
+
+            Meme meme = new Meme();
+            meme.getRandomMemeJsonFromSubreddit(update.getMessage().getText());
+
+            // If the meme is valid, it gets sent to the user,
+            // otherwise, no message is sent.
+            sendMeme(update.getMessage().getFrom().getId(), meme);
+
         }
     }
 
