@@ -91,10 +91,6 @@ public class Bot extends TelegramLongPollingBot {
 
                 // GET meme JSON
                 meme.getRandomMemeJson();
-
-                // Log the meme url to the console for now (debugging purposes)
-                System.out.println(meme.getImageUri());
-
                 sendMeme(id, meme);
             }
 
