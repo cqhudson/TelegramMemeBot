@@ -7,19 +7,16 @@ To use the bot, open the following link [t.me/connors_meme_bot](https://t.me/con
 Here is a list of current supported commands by the bot:
 
 - `/start` - show welcome command and usage
-- ![image](https://github.com/user-attachments/assets/f156f313-76bb-43d0-be7b-f568d9f471b9)
+
+![image](https://github.com/user-attachments/assets/f156f313-76bb-43d0-be7b-f568d9f471b9)
 
 - `/meme` - fetch a random meme from Reddit (chosen from either *r/memes*, *r/dankmemes*, or *r/me_irl*)
-- ![image](https://github.com/user-attachments/assets/a5f31485-b569-4e3c-87d3-1f59bca05b69)
+
+![image](https://github.com/user-attachments/assets/a5f31485-b569-4e3c-87d3-1f59bca05b69)
 
 - `/source` - fetch a random meme from a specific subreddit (Currently supported subreddits are *r/memes*, *r/dankmemes*, *r/wholesomememes*, *r/nsfwmemes*, *r/4chan*, and *r/greentext*. This is subject to change in the future)
-- ![image](https://github.com/user-attachments/assets/10ad12e0-c64c-468a-88c4-cdd3e75d5464)
 
-
-You can also input any text to try and pull memes from any subreddit.
-
-![image](https://github.com/user-attachments/assets/f9237ebe-77cf-4ce1-9ff9-4cc2f4a68013)
-
+![image](https://github.com/user-attachments/assets/10ad12e0-c64c-468a-88c4-cdd3e75d5464)
 
 ## How does it work?
 
@@ -63,6 +60,6 @@ If you want to host your own Telegram bot based on this code, there are a few st
 - If you don't know what to put in TELEGRAM_MY_ID, this is your Telegram user ID, if you follow the Bot tutorial by Telegram they will go into more detail on this. You don't need a valid number here, this is just to alert you every time your bot starts up. This should not affect the functionality of the bot.
 - Here is an example of the notification: ![image](https://github.com/user-attachments/assets/23f2e4fd-f26c-4f62-8bd0-4b45b166574a)
 
-7. Run the project. No need to set up any crazy servers, forward any ports, etc. The bot will just work. You can now message the bot and it should start sending you memes.
+7. Run the project. No need to set up any crazy servers, forward any ports, etc. The bot will just work. You can now message the bot and it should start sending you memes. You can build the project into a Jar file and run it from any device with an internet connection.
 
 
