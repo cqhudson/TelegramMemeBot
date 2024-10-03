@@ -1,4 +1,4 @@
-# Telegram Meme Bot
+# Telegram Meme Bot - PoC
 
 This is a simple Telegram bot that finds memes based on an API, and then sends the memes to the user that requested them as a Telegram message.
 
@@ -60,6 +60,6 @@ If you want to host your own Telegram bot based on this code, there are a few st
 - If you don't know what to put in TELEGRAM_MY_ID, this is your Telegram user ID, if you follow the Bot tutorial by Telegram they will go into more detail on this. You don't need a valid number here, this is just to alert you every time your bot starts up. This should not affect the functionality of the bot.
 - Here is an example of the notification: ![image](https://github.com/user-attachments/assets/23f2e4fd-f26c-4f62-8bd0-4b45b166574a)
 
-7. Run the project. No need to set up any crazy servers, forward any ports, etc. The bot will just work. You can now message the bot and it should start sending you memes. You can build the project into a Jar file and run it from any device with an internet connection.
+7. Run the project. No need to set up any crazy servers, forward any ports, etc. The bot will just work. You can now message the bot and it should start sending you memes.
 
 
