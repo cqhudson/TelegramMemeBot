@@ -74,11 +74,10 @@ public class Bot extends TelegramLongPollingBot {
 
             Message message = update.getMessage();
             User user = message.getFrom();
-            String username = user.getUserName();
             Long id = user.getId();
 
-            // Log each message sent to us to the console for now (debugging purposes)
-            System.out.println(username + ": " + message.getText());
+            // Log each message sent to us to the console (debugging purposes)
+            // System.out.println(user.getUsername() + ": " + message.getText());
 
             Meme meme = new Meme();
 
@@ -88,8 +87,6 @@ public class Bot extends TelegramLongPollingBot {
                         /start - show this message
                         /meme - fetch a random meme from Reddit
                         /source - fetch a random meme from a specific subreddit
-                        
-                        Or enter any text to attempt to fetch memes from a subreddit of your choosing!
                         """);
             }
 
@@ -161,22 +158,13 @@ public class Bot extends TelegramLongPollingBot {
 
             }
         }
-
-        // If the message is not a valid command, lets try to use it as a subreddit to pull memes from
-        else if (update.getMessage().hasText()) {
-
-            Meme meme = new Meme();
-            meme.getRandomMemeJsonFromSubreddit(update.getMessage().getText());
-
-            // If the meme is valid, it gets sent to the user,
-            // otherwise, no message is sent.
-            sendMeme(update.getMessage().getFrom().getId(), meme);
-
-        }
     }
 
     // This method sends text as a Telegram Message, no images or files.
     public void sendText(Long id, String text) {
+
+        // Debug purposes
+        // System.out.println("sendText");
 
         // Create a SendMessage object to build the message to send
         SendMessage sm = SendMessage.builder()
@@ -192,6 +180,10 @@ public class Bot extends TelegramLongPollingBot {
 
     // Handles whether we are sending a static image, or an animated gif.
     public void sendMeme(Long id, Meme meme) {
+
+        // Debug purposes
+        // System.out.println("sendMeme");
+
         if (meme.getImageUri().contains(".gif")){
             sendMemeAnimation(id, meme);
         }
@@ -202,6 +194,9 @@ public class Bot extends TelegramLongPollingBot {
 
     // This method sends a meme using the Telegram SendPhoto class to build a message with a Photo
     public void sendMemePhoto(Long id, Meme meme) {
+
+        // Debug purposes
+        // System.out.println("sendMemePhoto");
 
         // Store the image as an InputFile to pass into the SendPhoto builder
         InputFile image = new InputFile();
@@ -232,6 +227,9 @@ public class Bot extends TelegramLongPollingBot {
 
     // This method sends a meme in using the Telegram SendAnimation class to build a message with an Animation
     public void sendMemeAnimation(Long id, Meme meme) {
+
+        // Debug purposes
+        //System.out.println("sendMemeAnimation");
 
         // Store the animation as an InputFile to pass into the SendAnimation builder
         InputFile animation = new InputFile();

@@ -1,5 +1,7 @@
 public class MemeJson {
 
+    // Not every attribute is used right now.
+
     private String postLink;
     private String subreddit;
     private String title;

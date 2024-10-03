@@ -13,7 +13,8 @@ public class Meme {
 
     public void getRandomMemeJson() {
 
-        System.out.println("Fetching meme JSON data from " + MEME_API_URI);
+        // Debug purposes
+        // System.out.println("Fetching meme JSON data from " + MEME_API_URI);
 
         getJsonData(MEME_API_URI);
     }
@@ -22,7 +23,8 @@ public class Meme {
 
         final String endpoint = MEME_API_URI + "/" + subreddit;
 
-        System.out.println("Fetching meme JSON from " + endpoint);
+        // Debug purposes
+        //System.out.println("Fetching meme JSON from " + endpoint);
 
         getJsonData(endpoint);
     }
@@ -39,7 +41,9 @@ public class Meme {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 // Parse the Json into a MemeJson object
                 memeJson = new Gson().fromJson(response.body(), MemeJson.class);
-                System.out.println("Successfully fetched random meme JSON data.");
+
+                // Debug purposes
+                // System.out.println("Successfully fetched random meme JSON data.");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
