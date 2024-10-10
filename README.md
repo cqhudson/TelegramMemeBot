@@ -2,7 +2,7 @@
 
 This is a simple Telegram bot that finds memes based on an API, and then sends the memes to the user that requested them as a Telegram message.
 
-To try out the bot, open the following link [t.me/connors_meme_bot](https://t.me/connors_meme_bot) and send him some messages (you need a Telegram account to do so).
+**I'm, currently not hosting this bot.** ~~To try out the bot, open the following link [t.me/connors_meme_bot](https://t.me/connors_meme_bot) and send him some messages (you need a Telegram account to do so).~~
 
 Here is a list of current supported commands by the bot:
 
